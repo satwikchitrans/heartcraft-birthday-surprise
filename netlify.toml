@@ -1,0 +1,13 @@
+[build]
+  publish = "."
+  command = "echo 'Static site build complete'"
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/config.json"
+  status = 200
