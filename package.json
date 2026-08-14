@@ -4,7 +4,7 @@
   "description": "Interactive Birthday Web App with Master Admin Control and Permanent Local File Sync",
   "main": "server.js",
   "scripts": {
-    "build": "echo 'Static site build complete'",
+    "build": "mkdir -p public && cp -r index.html admin.html script.js admin.js style.css config.json public/",
     "start": "node server.js",
     "dev": "node server.js"
   },

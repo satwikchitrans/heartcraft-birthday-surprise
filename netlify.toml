@@ -1,6 +1,6 @@
 [build]
-  publish = "."
-  command = "echo 'Static site build complete'"
+  command = "mkdir -p public && cp -r index.html admin.html script.js admin.js style.css config.json public/"
+  publish = "public"
 
 [[redirects]]
   from = "/admin"
