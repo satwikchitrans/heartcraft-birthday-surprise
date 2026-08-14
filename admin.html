@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Admin Control | HeartCraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #0d0d18;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .admin-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 16px 24px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(16px);
+        }
+
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-brand h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            margin: 0;
+            color: #fff;
+        }
+
+        .admin-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            gap: 24px;
+            flex: 1;
+        }
+
+        @media (max-width: 1100px) {
+            .admin-main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .admin-card-panel {
+            background: rgba(20, 20, 35, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .preview-panel {
+            background: rgba(15, 15, 26, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            height: 100%;
+            min-height: 550px;
+        }
+
+        .preview-header {
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preview-header h3 {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #ffeaa7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            flex: 1;
+            background: #000;
+        }
+
+        /* Password Gate Overlay */
+        .admin-auth-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            background: rgba(10, 10, 20, 0.92);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PASSWORD LOCK GATE -->
+    <div class="admin-auth-overlay" id="adminAuthOverlay">
+        <div class="admin-auth-card">
+            <div class="admin-auth-header">
+                <span class="auth-icon">🔐</span>
+                <h3>Master Admin Authorization</h3>
+                <p>Enter the admin security password to access control dashboard.</p>
+            </div>
+            <div class="admin-auth-form">
+                <input type="password" id="adminPasswordInput" placeholder="Enter Admin Password (default: admin)..." autocomplete="off" />
+                <button class="admin-btn-primary" id="adminAuthSubmitBtn">Unlock Admin Controls 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN ADMIN CONTROL PAGE -->
+    <div class="admin-page-container">
+        
+        <!-- Navbar -->
+        <div class="admin-navbar">
+            <div class="admin-brand">
+                <span style="font-size: 1.8rem">⚡</span>
+                <div>
+                    <span class="admin-badge">STANDALONE MASTER ADMIN</span>
+                    <h1>HeartCraft App Configuration & Permanent File Editor</h1>
+                </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+                <a href="index.html" target="_blank" class="admin-btn-secondary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                    <span>🌐 Open Recipient Site</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="admin-main-grid">
+
+            <!-- LEFT: EDITOR FORM & TABS -->
+            <div class="admin-card-panel">
+                
+                <!-- Tab Navigation Bar -->
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="tabGeneral">👤 General & Recipient</button>
+                    <button class="admin-tab" data-tab="tabMessage">💌 Envelope & Message</button>
+                    <button class="admin-tab" data-tab="tabCake">🎂 Cake & Candles</button>
+                    <button class="admin-tab" data-tab="tabTraits">🃏 Traits & Bond</button>
+                    <button class="admin-tab" data-tab="tabFortunes">🔮 Fortunes & Mascot</button>
+                    <button class="admin-tab admin-tab-highlight" data-tab="tabFileSync">💾 Permanent Save</button>
+                </div>
+
+                <!-- Modal Content Area -->
+                <div class="admin-modal-body">
+
+                    <!-- TAB 1: GENERAL -->
+                    <div class="admin-tab-content active" id="tabGeneral">
+                        <div class="admin-form-group">
+                            <label for="cfgRecipient">Recipient Name:</label>
+                            <input type="text" id="cfgRecipient" placeholder="e.g. AANCHAL" />
+                            <small>Updates recipient name across all titles, messages, hero banner, envelope, and footer.</small>
+                        </div>
+
+                        <div class="admin-form-row">
+                            <div class="admin-form-group">
+                                <label for="cfgBirthMonth">Birthday Month (1-12):</label>
+                                <input type="number" id="cfgBirthMonth" min="1" max="12" placeholder="8" />
+                            </div>
+                            <div class="admin-form-group">
+                                <label for="cfgBirthDay">Birthday Day (1-31):</label>
+                                <input type="number" id="cfgBirthDay" min="1" max="31" placeholder="24" />
+                            </div>
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgHeroSub">Hero Tagline Subtitle:</label>
+                            <input type="text" id="cfgHeroSub" placeholder="e.g. Someone crafted this with ❤️" />
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgHeroTitlePrefix">Hero Title Prefix:</label>
+                            <input type="text" id="cfgHeroTitlePrefix" placeholder="e.g. A little surprise for" />
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgTeaserHeading">Teaser Heading:</label>
+                            <input type="text" id="cfgTeaserHeading" placeholder="e.g. Something special is waiting inside..." />
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: ENVELOPE & MESSAGE -->
+                    <div class="admin-tab-content" id="tabMessage">
+                        <div class="admin-form-group">
+                            <label for="cfgEnvelopePreview">Envelope Letter Preview Text:</label>
+                            <input type="text" id="cfgEnvelopePreview" placeholder="e.g. For AANCHAL ✨" />
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgMessageGreeting">Message Greeting Line:</label>
+                            <input type="text" id="cfgMessageGreeting" placeholder="e.g. Dear AANCHAL," />
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgMessageText">Main Personal Birthday Message:</label>
+                            <textarea id="cfgMessageText" rows="6" placeholder="Enter your full birthday message here..."></textarea>
+                            <small>Supports line breaks for natural paragraphs.</small>
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgMessageSignature">Message Signature:</label>
+                            <input type="text" id="cfgMessageSignature" placeholder="e.g. — With all my love ❤️" />
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: CAKE & CANDLES -->
+                    <div class="admin-tab-content" id="tabCake">
+                        <div class="admin-form-group">
+                            <label for="cfgNumCandles">Number of Candles (1 to 15):</label>
+                            <input type="number" id="cfgNumCandles" min="1" max="15" placeholder="5" />
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgCandleColors">Candle Colors (comma separated CSS/Hex colors):</label>
+                            <input type="text" id="cfgCandleColors" placeholder="#e84393, #6c5ce7, #00cec9, #f9ca24, #fd79a8" />
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgCakeTitle">Cake Page Title:</label>
+                            <input type="text" id="cfgCakeTitle" placeholder="e.g. Make a Wish! ✨" />
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgCakeSubtitle">Cake Page Subtitle / Instructions:</label>
+                            <input type="text" id="cfgCakeSubtitle" placeholder="e.g. Tap each candle or blow into your mic..." />
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: TRAITS & BOND -->
+                    <div class="admin-tab-content" id="tabTraits">
+                        <p class="admin-section-hint">Customize the 3 interactive flip cards on the Bond page:</p>
+                        
+                        <!-- Card 1 -->
+                        <div class="admin-card-edit-box">
+                            <h4>Card 1</h4>
+                            <div class="admin-form-row">
+                                <input type="text" id="cfgTraitEmoji0" placeholder="Emoji (e.g. 💛)" style="width:110px" />
+                                <input type="text" id="cfgTraitTitle0" placeholder="Front Title (e.g. Kind Heart)" />
+                            </div>
+                            <div class="admin-form-row">
+                                <input type="text" id="cfgTraitBackTitle0" placeholder="Back Title (e.g. Kindness ✨)" />
+                            </div>
+                            <input type="text" id="cfgTraitBackText0" placeholder="Back Text note..." />
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="admin-card-edit-box">
+                            <h4>Card 2</h4>
+                            <div class="admin-form-row">
+                                <input type="text" id="cfgTraitEmoji1" placeholder="Emoji (e.g. 🤝)" style="width:110px" />
+                                <input type="text" id="cfgTraitTitle1" placeholder="Front Title (e.g. Always There)" />
+                            </div>
+                            <div class="admin-form-row">
+                                <input type="text" id="cfgTraitBackTitle1" placeholder="Back Title (e.g. Loyalty 🤝)" />
+                            </div>
+                            <input type="text" id="cfgTraitBackText1" placeholder="Back Text note..." />
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="admin-card-edit-box">
+                            <h4>Card 3</h4>
+                            <div class="admin-form-row">
+                                <input type="text" id="cfgTraitEmoji2" placeholder="Emoji (e.g. ✨)" style="width:110px" />
+                                <input type="text" id="cfgTraitTitle2" placeholder="Front Title (e.g. Pure Soul)" />
+                            </div>
+                            <div class="admin-form-row">
+                                <input type="text" id="cfgTraitBackTitle2" placeholder="Back Title (e.g. Pure Heart 💖)" />
+                            </div>
+                            <input type="text" id="cfgTraitBackText2" placeholder="Back Text note..." />
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: FORTUNES & MASCOT -->
+                    <div class="admin-tab-content" id="tabFortunes">
+                        <div class="admin-form-group">
+                            <label for="cfgFortunes">Birthday Fortunes (one per line):</label>
+                            <textarea id="cfgFortunes" rows="6" placeholder="Enter fortunes (one fortune per line)..."></textarea>
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="cfgCatSpeeches">Cat Pet Mascot Speeches (one per line):</label>
+                            <textarea id="cfgCatSpeeches" rows="5" placeholder="Enter speeches (one line per tap speech)..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- TAB 6: PERMANENT FILE SYNC -->
+                    <div class="admin-tab-content" id="tabFileSync">
+                        <div class="admin-sync-banner">
+                            <h3>💾 Permanent Local File Modification</h3>
+                            <p>Clicking <strong>Save Permanently to Local Files</strong> writes your edits directly into <code>config.json</code>, <code>script.js</code>, and <code>index.html</code> on disk permanently!</p>
+                        </div>
+
+                        <div class="admin-actions-grid">
+                            <button class="admin-action-btn primary-save" id="btnSavePermanent">
+                                <span class="btn-icon">💾</span>
+                                <div class="btn-info">
+                                    <strong>Save Permanently to Local Files</strong>
+                                    <small>Modifies config.json, script.js, and index.html directly on local disk</small>
+                                </div>
+                            </button>
+
+                            <button class="admin-action-btn fs-access" id="btnSaveFileSystem">
+                                <span class="btn-icon">📂</span>
+                                <div class="btn-info">
+                                    <strong>Write to Disk via File System API</strong>
+                                    <small>Select local project folder in browser to overwrite files directly</small>
+                                </div>
+                            </button>
+
+                            <button class="admin-action-btn export-json" id="btnExportConfig">
+                                <span class="btn-icon">📥</span>
+                                <div class="btn-info">
+                                    <strong>Export config.json Download</strong>
+                                    <small>Download updated config file</small>
+                                </div>
+                            </button>
+
+                            <button class="admin-action-btn reset-default" id="btnResetDefaults">
+                                <span class="btn-icon">🔄</span>
+                                <div class="btn-info">
+                                    <strong>Reset to Original Defaults</strong>
+                                    <small>Restore factory default settings</small>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div class="admin-form-group" style="margin-top:20px;">
+                            <label for="cfgAdminPassword">Change Master Admin Password:</label>
+                            <input type="password" id="cfgAdminPassword" placeholder="Current: admin" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="admin-modal-footer">
+                    <div class="admin-status-text" id="adminStatusText">⚡ Live iframe preview connected</div>
+                    <div class="admin-footer-btns">
+                        <button class="admin-btn-secondary" id="btnRefreshPreview">Refresh Preview 🔄</button>
+                        <button class="admin-btn-primary" id="btnSaveAllModal">Save & Sync All Files 💾</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: LIVE PREVIEW IFRAME -->
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h3><span>📱</span> Live Web Site Preview</h3>
+                    <button class="admin-btn-secondary" id="btnReloadIframe" style="padding:4px 12px; font-size:0.75rem;">Reload Preview 🔄</button>
+                </div>
+                <iframe src="index.html" id="sitePreviewIframe" class="preview-iframe"></iframe>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Admin Notification Toast -->
+    <div class="admin-toast" id="adminToast" style="display:none"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

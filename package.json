@@ -1,0 +1,13 @@
+{
+  "name": "heartcraft-birthday-surprise",
+  "version": "1.0.0",
+  "description": "Interactive Birthday Web App with Master Admin Control and Permanent Local File Sync",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["birthday", "interactive", "admin", "local-sync"],
+  "author": "",
+  "license": "ISC"
+}

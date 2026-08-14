@@ -1,0 +1,75 @@
+{
+  "recipient": "AANCHAL",
+  "birthMonth": 8,
+  "birthDay": 24,
+  "numCandles": 4,
+  "heroSub": "Someone crafted this with ❤️",
+  "heroTitlePrefix": "A little surprise for",
+  "teaserHeading": "Something special is waiting inside...",
+  "teaserHint": "Tap below to unwrap your surprise 🎁",
+  "envelopePreview": "For AANCHAL ✨",
+  "envelopeHint": "Tap the wax seal to open! 💌",
+  "birthdayHeroLine1": "HAPPY",
+  "birthdayHeroLine2": "BIRTHDAY",
+  "birthdayHeroLine3": "AANCHAL!",
+  "birthdaySubtitle": "Today is all about YOU! ✨",
+  "cakeTitle": "Make a Wish! ✨",
+  "cakeSubtitle": "Tap each candle or blow into your mic to blow them out!",
+  "candlesHint": "🌬️ Blow out all the candles!",
+  "messageGreeting": "Dear AANCHAL,",
+  "messageText": "Bas kuch din me aapka bday aane wala hai and uske liye shayad hum hi jyada excited hai... waise iss message me bohot galtiyaaan hongi {jaise mere andar hai} but i'll try to improve it taaki kabhi to ye perfect bann paaye\nThat aside ye site maine sirf aapko ye batane ke liye banai hai taaki aap khush raho, aapne kal bataya tha ki aapka mood aacha nahi hai , and hum aapka mood aacha nahi kr sake the so here i am on my duty taaki aapka mood aacha ho sake\nwell hum jyada kuch bol nahi paa rahe aur likh to paate nahi hai , but still aap feelings to samajh hi jaaogi...and if god's grace is with me...i know ki ab aap thoda sa khush jaroor ho gayi hogii...\nand sorry ha humko pata hai kbhi kbhi hum thoda over kr dete hai jisse shyd aap awkward ho jaati ho , but i cant control that , you know aapse thodi jyada baat ho jaaye iske liye kr deta hu shyad, but i'll try ki aisa naa ho...\nso at the end bass yahi kehna chahunga ki aap khush raha kro ....and w8 kro apne bday ka...even tough hum jyada nahi kr sake (cause mere pe jyada paisa saved nhi tha...and i'm not a rich brat) but i'll make sure ki aisa din jaroor aaye jb hum legit aapko aapke poori life ka sabse best bday gift de aur aapko legit duniya me kuch one of the best and unique gifts and experience ho taaki aap genuine me sabse jyada special feel kro uss din....\nso please tb tk w8 kree aur khusshhh raheee...\ntb tk chaandni is signing off....\naur haa ab vindhyachal ke saath saath amritsar bhi jaana hai...\n",
+  "messageSignature": "— With all my love ❤️",
+  "traits": [
+    {
+      "id": "kind",
+      "emoji": "💛",
+      "title": "Kind Heart",
+      "backTitle": "Kindness ✨",
+      "backText": "Your warmth brightens even the darkest days!"
+    },
+    {
+      "id": "loyal",
+      "emoji": "🤝",
+      "title": "Always There",
+      "backTitle": "Loyalty 🤝",
+      "backText": "The most reliable & supportive friend ever!"
+    },
+    {
+      "id": "pure",
+      "emoji": "✨",
+      "title": "Pure Soul",
+      "backTitle": "Pure Heart 💖",
+      "backText": "Generous, genuine, and truly unforgettable!"
+    }
+  ],
+  "catSpeeches": [
+    "Meow! Happy Birthday! 🐾",
+    "You're the purr-fect friend! 💕",
+    "Have the most magical day ever! 🎂",
+    "Sending you lots of purrs & hugs! 💖",
+    "Besties forever & ever! 🌟",
+    "Party hard & eat lots of cake! 🍰"
+  ],
+  "fortunes": [
+    "🌟 A year filled with boundless laughter, unforgettable adventures, and endless joy awaits you!",
+    "✨ Your smile has the magic to light up any room. Keep shining bright today and always!",
+    "💖 Every wish you make today is taking flight into the universe. Get ready for miracles!",
+    "🌈 You deserve all the sweetness, warmth, and love the world has to offer!",
+    "⭐ Success, happiness, and wonderful surprises will follow you wherever you go this year!",
+    "🎉 May your heart always be light, your smile radiant, and your days full of magic!",
+    "🎁 The universe is plotting something wonderfully happy for you this year!",
+    "🌸 May your path be lined with flowers and every step bring you closer to your dreams!",
+    "👑 Happy Birthday to a true queen! Stay iconic, stay kind, and stay YOU!",
+    "🍰 May your year be as sweet as birthday cake and filled with golden memories!"
+  ],
+  "finalTitle": "Happy Birthday,",
+  "finalSubtitle": "May your day be as wonderful as you are!",
+  "candleColors": [
+    "#e84393",
+    "#6c5ce7",
+    "#00cec9",
+    "#f9ca24",
+    "#fd79a8"
+  ],
+  "adminPassword": "admin"
+}

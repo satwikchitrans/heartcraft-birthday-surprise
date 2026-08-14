@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover">
+    <title id="pageTitle">Happy Birthday AANCHAL! 🎂 | HeartCraft</title>
+    <meta name="description" content="A special birthday surprise crafted with love for AANCHAL">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Serif+Display:ital@0;1&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p id="loadingRecipient">Preparing your surprise for AANCHAL...</p>
+        </div>
+    </div>
+
+    <!-- Sparkle & Particle Field -->
+    <div class="sparkle-field" id="sparkleField"></div>
+
+    <!-- Interactive Tap Heart Spawner Canvas/Layer -->
+    <div class="tap-heart-layer" id="tapHeartLayer"></div>
+
+    <!-- Confetti & Fireworks Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Header Controls (Music & Sound) -->
+    <div class="header-controls">
+        <button class="music-toggle" id="musicToggle" aria-label="Play music">🎵 Play Music</button>
+    </div>
+
+    <!-- Main App Container -->
+    <div class="app" id="app">
+
+        <!-- ===== PAGE 1: LANDING ===== -->
+        <div class="page active" id="pageLanding">
+            <div class="page-content landing-simple">
+                <!-- Interactive Floating Balloons -->
+                <div class="landing-balloons" id="landingBalloons">
+                    <div class="balloon-item" style="--left: 8%; --delay: 0s; --color: #ff7675;">🎈</div>
+                    <div class="balloon-item" style="--left: 22%; --delay: 1.5s; --color: #74b9ff;">🎈</div>
+                    <div class="balloon-item" style="--left: 78%; --delay: 0.8s; --color: #fd79a8;">🎈</div>
+                    <div class="balloon-item" style="--left: 90%; --delay: 2.2s; --color: #ffeaa7;">🎈</div>
+                </div>
+
+                <div class="hero">
+                    <p class="hero-sub" id="heroSub">Someone crafted this with ❤️</p>
+                    <h1><span id="heroTitlePrefix">A little surprise for</span> <span class="highlight" id="landingRecipient">AANCHAL</span></h1>
+                </div>
+                <div class="teaser">
+                    <p id="teaserHeading">Something special is waiting inside...</p>
+                    <p class="teaser-hint" id="teaserHint">Tap below to unwrap your surprise 🎁</p>
+                </div>
+                <div class="cd" id="countdown">
+                    <div class="cd-row">
+                        <div class="cd-block">
+                            <span class="cd-value" id="cdDays">00</span>
+                            <span class="cd-label">Days</span>
+                        </div>
+                        <span class="cd-colon">:</span>
+                        <div class="cd-block">
+                            <span class="cd-value" id="cdHours">00</span>
+                            <span class="cd-label">Hours</span>
+                        </div>
+                        <span class="cd-colon">:</span>
+                        <div class="cd-block">
+                            <span class="cd-value" id="cdMins">00</span>
+                            <span class="cd-label">Mins</span>
+                        </div>
+                        <span class="cd-colon">:</span>
+                        <div class="cd-block">
+                            <span class="cd-value" id="cdSecs">00</span>
+                            <span class="cd-label">Secs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="landing-actions">
+                    <div class="landing-cta">
+                        <button id="surpriseBtn" class="pulse-glow-btn">Open Your Surprise 🎁</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 2: ENVELOPE & REVEAL ===== -->
+        <div class="page" id="pageReveal">
+            <div class="page-content reveal-container">
+                <h2 class="page-title">You've Got Mail! 💌</h2>
+                <div class="envelope-wrapper">
+                    <div class="envelope" id="envelope">
+                        <div class="envelope-back"></div>
+                        <div class="envelope-letter" id="envelopeLetter">
+                            <span class="envelope-letter-heart">💌</span>
+                            <p class="envelope-letter-preview" id="envelopeLetterPreview">For AANCHAL ✨</p>
+                        </div>
+                        <div class="envelope-front"></div>
+                        <div class="envelope-flap" id="envelopeFlap">
+                            <div class="envelope-seal" id="envelopeSeal" title="Tap seal to open">❤️</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="envelope-hint" id="envelopeHint">Tap the wax seal to open! 💌</p>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 3: BIRTHDAY REVEAL ===== -->
+        <div class="page" id="pageBirthday">
+            <div class="page-content birthday-container">
+                <div class="bday-hero-reveal" id="bdayHeroReveal">
+                    <span class="bday-hero-line bday-hero-line--1" id="bdayHeroLine1">HAPPY</span>
+                    <span class="bday-hero-line bday-hero-line--2" id="bdayHeroLine2">BIRTHDAY</span>
+                    <span class="bday-hero-line bday-hero-line--3" id="bdayHeroLine3">AANCHAL!</span>
+                </div>
+                <div class="birthday-emojis" id="birthdayEmojis">
+                    <span class="float-emoji interactive-emoji" style="--delay:0s;--x:-30px" data-emoji="🎈">🎈</span>
+                    <span class="float-emoji interactive-emoji" style="--delay:0.2s;--x:20px" data-emoji="🎉">🎉</span>
+                    <span class="float-emoji interactive-emoji" style="--delay:0.4s;--x:-10px" data-emoji="🥳">🥳</span>
+                    <span class="float-emoji interactive-emoji" style="--delay:0.6s;--x:35px" data-emoji="🎊">🎊</span>
+                    <span class="float-emoji interactive-emoji" style="--delay:0.8s;--x:-25px" data-emoji="💖">💖</span>
+                </div>
+                <p class="birthday-subtitle" id="birthdaySubtitle">Today is all about YOU! ✨</p>
+                <div class="bday-action-row">
+                    <button class="popper-btn" id="partyPopperBtn">🎉 Blast Confetti!</button>
+                    <button class="celebrate-btn page-nav-btn" id="toPageCake">Let's Celebrate! 🎂</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 4: CAKE & CANDLES ===== -->
+        <div class="page" id="pageCake">
+            <div class="page-content cake-container">
+                <h2 class="cake-title" id="cakeTitle">Make a Wish! ✨</h2>
+                <p class="cake-subtitle" id="cakeSubtitle">Tap each candle or blow into your mic to blow them out!</p>
+                
+                <div class="cake-scene">
+                    <div class="candles-row" id="candlesRow"></div>
+                    <div class="cake" id="interactiveCake" title="Tap cake to add sprinkles!">
+                        <div class="cake-layer cake-layer-top">
+                            <div class="cake-cream"></div>
+                            <div class="cake-drip" style="left:15%"></div>
+                            <div class="cake-drip" style="left:35%"></div>
+                            <div class="cake-drip" style="left:55%"></div>
+                            <div class="cake-drip" style="left:75%"></div>
+                            <div class="cake-drip" style="left:90%"></div>
+                        </div>
+                        <div class="cake-layer cake-layer-mid">
+                            <div class="cake-stripe"></div>
+                        </div>
+                        <div class="cake-layer cake-layer-bottom">
+                            <div class="cake-stripe"></div>
+                        </div>
+                        <div class="cake-plate"></div>
+                        <div class="cake-slice-cut" id="cakeSliceCut">
+                            <span class="slice-emoji">🍰</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cake-controls">
+                    <button class="mic-blow-btn" id="micBlowBtn">🎤 Blow into Mic</button>
+                    <button class="relight-btn" id="relightBtn" style="display:none">🔥 Relight Candles</button>
+                </div>
+
+                <p class="candles-hint" id="candlesHint">🌬️ Blow out all the candles!</p>
+                <button class="celebrate-btn page-nav-btn" id="toPageMsg" style="display:none">Continue to Message →</button>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 5: PERSONAL MESSAGE ===== -->
+        <div class="page" id="pageMessage">
+            <div class="page-content message-container">
+                <div class="message-card" id="messageCard">
+                    <div class="message-header">
+                        <span class="message-icon">💌</span>
+                        <h2>A Message For You</h2>
+                    </div>
+                    <div class="message-divider"></div>
+                    <div class="message-body" id="messageBody">
+                        <p class="message-greeting" id="messageGreeting">Dear AANCHAL,</p>
+                        <p class="message-text" id="messageText"></p>
+                        <p class="message-signature" id="messageSignature">— With all my love ❤️</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="skip-typing-hint" id="skipTypingHint">⚡ Tap card to reveal instantly</span>
+                    </div>
+                </div>
+
+                <div class="message-actions">
+                    <button class="send-love-btn" id="sendLoveBtn">❤️ Send Love (<span id="loveCount">0</span>)</button>
+                    <button class="celebrate-btn page-nav-btn" id="toPageBond">Next Surprise →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 6: BOND & TRAITS ===== -->
+        <div class="page" id="pageBond">
+            <div class="page-content bond-container">
+                <h2 class="bond-title">Our Bond in Three Words</h2>
+                <p class="bond-subtitle">Tap each card to flip and reveal secret notes! ✨</p>
+                
+                <div class="bond-traits" id="bondTraits">
+                    <div class="trait-card" style="--delay:0.1s" data-trait="kind" id="traitCard0">
+                        <div class="trait-card-inner">
+                            <div class="trait-card-front">
+                                <span class="trait-emoji" id="traitEmoji0">💛</span>
+                                <span class="trait-text" id="traitTitle0">Kind Heart</span>
+                                <span class="tap-flip-hint">Tap to flip 🔄</span>
+                            </div>
+                            <div class="trait-card-back">
+                                <span class="trait-back-title" id="traitBackTitle0">Kindness ✨</span>
+                                <p class="trait-back-text" id="traitBackText0">Your warmth brightens even the darkest days!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trait-card" style="--delay:0.3s" data-trait="loyal" id="traitCard1">
+                        <div class="trait-card-inner">
+                            <div class="trait-card-front">
+                                <span class="trait-emoji" id="traitEmoji1">🤝</span>
+                                <span class="trait-text" id="traitTitle1">Always There</span>
+                                <span class="tap-flip-hint">Tap to flip 🔄</span>
+                            </div>
+                            <div class="trait-card-back">
+                                <span class="trait-back-title" id="traitBackTitle1">Loyalty 🤝</span>
+                                <p class="trait-back-text" id="traitBackText1">The most reliable & supportive friend ever!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trait-card" style="--delay:0.5s" data-trait="pure" id="traitCard2">
+                        <div class="trait-card-inner">
+                            <div class="trait-card-front">
+                                <span class="trait-emoji" id="traitEmoji2">✨</span>
+                                <span class="trait-text" id="traitTitle2">Pure Soul</span>
+                                <span class="tap-flip-hint">Tap to flip 🔄</span>
+                            </div>
+                            <div class="trait-card-back">
+                                <span class="trait-back-title" id="traitBackTitle2">Pure Heart 💖</span>
+                                <p class="trait-back-text" id="traitBackText2">Generous, genuine, and truly unforgettable!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bestie Vibe Charging Meter -->
+                <div class="vibe-meter-box" id="vibeMeterBox" title="Tap to boost Bestie Power!">
+                    <div class="vibe-header">
+                        <span class="vibe-label">Bestie Power Level ✨</span>
+                        <span class="vibe-percent" id="vibePercent">0%</span>
+                    </div>
+                    <div class="vibe-track">
+                        <div class="vibe-fill" id="vibeFill"></div>
+                    </div>
+                    <p class="vibe-hint" id="vibeHint">Tap to charge up Bestie Vibes! 💕</p>
+                </div>
+
+                <!-- Interactive Friend Pet -->
+                <div class="bond-friend">
+                    <p class="friend-label">Your Little Friend</p>
+                    <div class="friend-wrapper">
+                        <div class="friend-speech" id="friendSpeech">Meow! Tap me! 🐾</div>
+                        <div class="friend-character" id="friendChar">🐱</div>
+                    </div>
+                </div>
+
+                <button class="celebrate-btn page-nav-btn" id="toPageFinal">See Your Gift →</button>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 7: FINAL WISH ===== -->
+        <div class="page" id="pageFinal">
+            <div class="page-content final-container">
+                <h1 class="final-title" id="finalTitleHeader">Happy Birthday, <span class="highlight" id="finalRecipient">AANCHAL!</span> 🎂</h1>
+                <p class="final-subtitle" id="finalSubtitle">May your day be as wonderful as you are!</p>
+                <div class="final-emojis">🎂 🎈 🎉 🎁 🥳</div>
+
+                <div class="final-wishes">
+                    <div class="wish-card" style="--delay:0.2s">
+                        <span>🌈</span>
+                        <p>May all your dreams come true</p>
+                    </div>
+                    <div class="wish-card" style="--delay:0.4s">
+                        <span>💖</span>
+                        <p>Filled with love & happiness</p>
+                    </div>
+                    <div class="wish-card" style="--delay:0.6s">
+                        <span>⭐</span>
+                        <p>Shine bright like you always do</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Birthday Wish Fortune Generator -->
+                <div class="fortune-container" id="fortuneContainer">
+                    <button class="fortune-btn" id="drawWishBtn">✨ Reveal Today's Special Birthday Fortune ✨</button>
+                    <div class="fortune-card" id="fortuneCard" style="display:none">
+                        <span class="fortune-sparkle">🔮</span>
+                        <p class="fortune-text" id="fortuneText"></p>
+                    </div>
+                </div>
+
+                <div class="final-actions">
+                    <button class="fireworks-btn" id="fireworksBtn">🎆 Launch Fireworks!</button>
+                    <button class="celebrate-btn replay-btn" id="replayBtn">🔄 Watch Again</button>
+                </div>
+
+                <p class="create-own" id="createOwnFooter">
+                    Crafted with ❤️ for AANCHAL
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Global Back Button (shown on pages 2+) -->
+    <button class="back-btn" id="backBtn" style="display:none">← Back</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
